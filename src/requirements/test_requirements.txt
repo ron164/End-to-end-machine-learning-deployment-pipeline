@@ -5,6 +5,6 @@ pytest
 
 # repo maintaince tooling
 black
-flake8
+flake8>=3.9.0,<3.10.0
 mypy
 isort
