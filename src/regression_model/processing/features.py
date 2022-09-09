@@ -1,29 +1,28 @@
 # -*- coding: utf-8 -*-
 """
-# @Time : 8/15/2022 12:45 AM
+# @Time : 9/9/2022 11:24 AM
 # @Author : rohan.ijare
 """
-import numpy as np
-import pandas as pd
+from typing import List
 
+import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 
 
 class TemporalVariableTrasnformer(BaseEstimator, TransformerMixin):
+    """Temporal elapsed time trasnformer."""
 
-    def __init__(self, variables, reference_variable):
+    def __init__(self, variables: List[str], reference_variable: str):
         if not isinstance(variables, list):
-            raise ValueError('variables should be a list')
-
+            raise ValueError("variables should be a list")
         self.variables = variables
         self.reference_variable = reference_variable
 
-    def fit(self, X, y=None):
-        # we need this step to fit the sklearn pipeline
+    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+        """We need this step to fit the sklearn pipeline"""
         return self
 
-    def transform(self, X):
-        # so that we don not over-write the original dataframe
+    def transform(self, X: pd.DataFrame):
         X = X.copy()
         for feature in self.variables:
             X[feature] = X[self.reference_variable] - X[feature]
@@ -31,17 +30,18 @@ class TemporalVariableTrasnformer(BaseEstimator, TransformerMixin):
 
 
 class Mapper(BaseEstimator, TransformerMixin):
-    def __init__(self, variables, mappings):
+    """Categorical variable mapper."""
+
+    def __init__(self, variables: List[str], mappings: dict):
         if not isinstance(variables, list):
-            raise ValueError('variables should be a list')
+            raise ValueError("variables should be a list")
         self.variables = variables
         self.mappings = mappings
 
-    def fit(self, X, y=None):
-        # we need this step to fit the sklearn pipeline
+    def fit(self, X: pd.DataFrame, y: pd.Series = None):
         return self
 
-    def transform(self, X):
+    def transform(self, X: pd.DataFrame):
         X = X.copy()
         for feature in self.variables:
             X[feature] = X[feature].map(self.mappings)
