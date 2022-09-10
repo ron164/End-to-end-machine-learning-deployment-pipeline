@@ -16,8 +16,8 @@ from sklearn.linear_model import Lasso
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import Binarizer, MinMaxScaler
 
-from src.regression_model.config.core import config
-from src.regression_model.processing import features as pp
+from regression_model.config.core import config
+from regression_model.processing import features as pp
 
 price_pipe = Pipeline(
     [
@@ -53,7 +53,7 @@ price_pipe = Pipeline(
         # == TEMPORAL VARIABLES ====
         (
             "elapsed_time",
-            pp.TemporalVariableTransformer(
+            pp.TemporalVariableTrasnformer(
                 variables=config.model_config.temporal_vars,
                 reference_variable=config.model_config.ref_var,
             ),

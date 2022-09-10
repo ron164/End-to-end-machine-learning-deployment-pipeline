@@ -19,7 +19,7 @@ def run_training() -> None:
         data[config.model_config.features],
         data[config.model_config.target],
         test_size=config.model_config.test_size,
-        random_state=config.model_config.random_state
+        random_state=config.model_config.random_state,
     )
     y_train = np.log(y_train)
 

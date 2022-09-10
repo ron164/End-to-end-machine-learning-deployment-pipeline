@@ -6,3 +6,4 @@ strictyaml
 ruamel.yaml
 feature-engine
 joblib
+matplotlib

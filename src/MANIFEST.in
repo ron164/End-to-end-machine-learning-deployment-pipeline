@@ -1,0 +1,16 @@
+include README.md
+include AUTHORS.rst
+include CONTRIBUTING.rst
+include ./requirements/requirements.txt
+include ./requirements/test_requirements.txt
+
+recursive-include regression_model *
+
+exclude *.log
+exclude *.cfg
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * ipynb_checkpoints
+recursive-exclude * idea
+recursive-exclude * pytest_cache

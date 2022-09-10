@@ -5,11 +5,13 @@
 """
 import typing as t
 from pathlib import Path
+
 import joblib
 import pandas as pd
 from sklearn.pipeline import Pipeline
-from src.regression_model import __version__ as _version
-from src.regression_model.config.core import DATASET_DIR, TRAINED_MODEL_DIR, config
+
+from regression_model import __version__ as _version
+from regression_model.config.core import DATASET_DIR, TRAINED_MODEL_DIR, config
 
 
 def load_dataset(*, file_name: str) -> pd.DataFrame:
@@ -22,8 +24,8 @@ def load_dataset(*, file_name: str) -> pd.DataFrame:
 
 
 def remove_old_pipelines(*, files_to_keep: t.List[str]):
-    """Automatically removes the old version, this is to ensure that is correct traceability between package and model
-    version."""
+    """Automatically removes the old version, this is to ensure that is correct
+    traceability between package and model version."""
     do_not_delete = files_to_keep + ["__init__.py"]
     for model_file in TRAINED_MODEL_DIR.iterdir():
         if model_file.name not in do_not_delete:

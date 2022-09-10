@@ -4,7 +4,11 @@
 pytest
 
 # repo maintaince tooling
+# isort for sorting imports in a correct order
+# mypy for type checking tool
+# flake8 is lynting tool
+# black is code styling and enforcement tool
 black
-flake8>=3.9.0,<3.10.0
+flake8
 mypy
 isort

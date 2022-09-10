@@ -1,0 +1,7 @@
+numpy
+unicorn
+fastapi
+python-multipart
+pydantic
+typing_extensions
+loguru

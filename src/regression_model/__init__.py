@@ -4,7 +4,8 @@
 # @Author : rohan.ijare
 """
 import logging
-from src.regression_model.config.core import PACKAGE_ROOT, config
+
+from regression_model.config.core import PACKAGE_ROOT, config
 
 logging.getLogger(config.app_config.package_name).addHandler(logging.NullHandler())
 

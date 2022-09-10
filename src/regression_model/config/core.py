@@ -5,9 +5,11 @@
 """
 from pathlib import Path
 from typing import Dict, List, Sequence
+
 from pydantic import BaseModel
 from strictyaml import YAML, load
-from src import regression_model
+
+import regression_model
 
 # Project Directories
 PACKAGE_ROOT = Path(regression_model.__file__).resolve().parent
@@ -16,11 +18,13 @@ ROOT = PACKAGE_ROOT.parent
 CONFIG_FILE_PATH = PACKAGE_ROOT / "config.yml"
 print(CONFIG_FILE_PATH)
 DATASET_DIR = PACKAGE_ROOT / "dataset"
+print(DATASET_DIR)
 TRAINED_MODEL_DIR = PACKAGE_ROOT / "trained_models"
-
+print(TRAINED_MODEL_DIR)
 
 class AppConfig(BaseModel):
     """Application-level configuration"""
+
     package_name: str
     training_data_file: str
     test_data_file: str
@@ -29,6 +33,7 @@ class AppConfig(BaseModel):
 
 class ModelConfig(BaseModel):
     """All configuration relevant to model training and feature engineering"""
+
     target: str
     variables_to_rename: Dict
     features: List[str]
@@ -55,6 +60,7 @@ class ModelConfig(BaseModel):
 
 class Config(BaseModel):
     """master configuration object"""
+
     app_config: AppConfig
     model_config: ModelConfig
 
@@ -82,8 +88,10 @@ def create_and_validate_config(parsed_config: YAML = None) -> Config:
     if parsed_config is None:
         parsed_config = fetch_config_from_yml()
 
-    _config = Config(app_config=AppConfig(**parsed_config.data),
-                     model_config=ModelConfig(**parsed_config.data))
+    _config = Config(
+        app_config=AppConfig(**parsed_config.data),
+        model_config=ModelConfig(**parsed_config.data),
+    )
     # print(_config)
     return _config
 

@@ -1,0 +1,7 @@
+-r requirements.txt
+pytest
+requests
+black
+flake8
+mypy
+isort
